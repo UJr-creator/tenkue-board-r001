@@ -1,0 +1,30 @@
+<div class="post_wrapper">
+  <div class="post_wrapper__content">
+    <div class="post_wrapper__content__post_form">
+      <h3>
+        <span>新規投稿</span>
+      </h3>
+
+      <%= form_tag("/posts/create") do %>
+        <div class="form_area">
+          <%= render 'posts/error_messages', model: f.object %>
+          <div class="form-error">
+            <%= message %>
+          </div>
+       
+        <div class="form_area__field">
+          <textarea name="content" placeholder="投稿内容を入力" 
+                    rows="10" id="post_text"><%= @post.content %></textarea>
+        </div>
+        <div class="form_area__action">
+          <input type="submit" value="投稿" class="form_area__action__btn"
+                  name ="commit">
+        
+        </div>
+        </div>
+      </div>
+    <% end %>
+        
+        </div>
+  </div>
+</div>
