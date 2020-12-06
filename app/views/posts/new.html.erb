@@ -5,20 +5,19 @@
         <span>新規投稿</span>
       </h3>
 
-      <%= form_tag("/posts/create") do %>
+      <%= form_with(model: @post, local:true) do |f| %>
         <div class="form_area">
-          <%= render 'posts/error_messages', model: f.object %>
-          <div class="form-error">
-            <%= message %>
-          </div>
-       
+          <%= render 'templates/error_messages', model: f.object %>
+      
         <div class="form_area__field">
-          <textarea name="content" placeholder="投稿内容を入力" 
-                    rows="10" id="post_text"><%= @post.content %></textarea>
+          <%= f.text_area :content, placeholder: "投稿内容を入力" ,
+                    rows: "10" ,id: "post_text"%>
         </div>
+         <div class="form_area__hidden_field">
+            <%= hidden_field_tag :user_id, @post.id %>
+          </div>
         <div class="form_area__action">
-          <input type="submit" value="投稿" class="form_area__action__btn"
-                  name ="commit">
+          <%= f.submit '投稿',class:"form_area__action__btn" %>
         
         </div>
         </div>
