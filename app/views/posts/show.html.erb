@@ -34,7 +34,7 @@
             </li>
           </ul>
           <div class="post_detail__bottom_box__admin_actions">
-          <% if @post.user_id == @current_user%>
+          <% if @post.user_id == current_user%>
           <%= link_to("編集", "/posts/#{@post.id}/edit") %>
            <%= link_to("削除", "/posts/#{@post.id}/destroy", {method: "post"}) %> 
           <% end %>

@@ -1,3 +1,24 @@
 {
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "[json]": {
+
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.suggest.insertMode": "replace"
+    },
+    "json.schemas": [
+
+    
+    ],
+    "emmet.preferences": {
+    
+    },
+    "emmet.includeLanguages": {
+        "erb": "html"
+    },
+    "[ruby]": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true
+    },
 }
