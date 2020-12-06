@@ -13,9 +13,6 @@
           <%= f.text_area :content, placeholder: "投稿内容を入力" ,
                     rows: "10" ,id: "post_text"%>
         </div>
-         <div class="form_area__hidden_field">
-            <%= hidden_field_tag :user_id, @post.id %>
-          </div>
         <div class="form_area__action">
           <%= f.submit '投稿',class:"form_area__action__btn" %>
         
