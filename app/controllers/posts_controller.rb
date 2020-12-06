@@ -7,11 +7,9 @@ class PostsController < ApplicationController
     @posts = Post.all
       .includes(:user)
       .order(created_at: :desc)
-    # 上から順に表示
   end
 
   def show
-    # @post =Post.find_by(id:params[:id])
     @user = @post.user
   end
 
@@ -20,7 +18,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-    # @post = Post.find_by(id: params[:id])
   end
 
   def create
@@ -32,14 +29,16 @@ class PostsController < ApplicationController
     end
   end
 
-  def set_post
-    @post = Post.find(params[:id])
-  end
-
+  
   def destroy
     @post = Post.find_by(id: params[:id])
     @post.destroy
     redirect_to("/")
+  end
+  
+  private
+  def set_post
+    @post = Post.find(params[:id])
   end
 
   def ensure_correct_user
