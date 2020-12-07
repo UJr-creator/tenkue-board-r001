@@ -8,15 +8,14 @@
       <%= form_with(model: @post, local:true) do |f| %>
         <div class="form_area">
           <%= render 'templates/error_messages', model: f.object %>
-      
-        <div class="form_area__field">
-          <%= f.text_area :content, placeholder: "投稿内容を入力" ,
+            <div class="form_area__field">
+              <%= f.text_area :content, placeholder: "投稿内容を入力" ,
                     rows: "10" ,id: "post_text"%>
-        </div>
-        <div class="form_area__action">
+            </div>
+         <div class="form_area__action">
           <%= f.submit '投稿',class:"form_area__action__btn" %>
         
-        </div>
+         </div>
         </div>
       </div>
     <% end %>
