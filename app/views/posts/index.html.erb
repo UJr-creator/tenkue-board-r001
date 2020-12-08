@@ -32,10 +32,12 @@
                     <span>いいね数</span>
                   </li>
                 </ul>
-                <ul class="post__bottom_box__admin_actions">
-                  <li><%= link_to "編集", edit_post_path(post) %></li>
-                  <li><%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除して良いですか？" } %></li>
-                </ul>
+                <% if post.user == current_user %>
+                  <ul class="post__bottom_box__admin_actions">
+                    <li><%= link_to "編集", edit_post_path(post) %></li>
+                    <li><%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除して良いですか？" } %></li>
+                  </ul>
+                <% end %>
               </div>
             <% end %>
           </div>

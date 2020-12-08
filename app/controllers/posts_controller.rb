@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
-  before_action :set_post, only: %i[edit show update destory]
+  before_action :authenticate_user!, only: %i[new edit update create destroy]
+  before_action :set_post, only: %i[edit show update destroy]
   before_action :ensure_correct_user, only: %i[edit update destory]
 
   def index
