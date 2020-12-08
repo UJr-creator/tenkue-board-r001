@@ -4,25 +4,23 @@
       <span>投稿一覧</span>
     </h3>
   </div>
-  <div class="post_wrapper__content">
     <ul class="post_wrapper__content__post_list">
-      <%# 未投稿の場合は「まだ投稿されたスレッドはありません。」と表示するように条件分岐すること %>
       <li>
       <% @posts.each do |post| %>
-        <div class="post">
-        <%= link_to("/posts/#{post.id}")  do %>
+     <div class="post">
+        <%= link_to post_path(@post) do %>
           <div class="post__top_box">
             <div class="post__top_box__name">
               <span>投稿者：投稿者名</span>
-        </div>
-        <div class="post__top_box__time">
+          </div>
+         <div class="post__top_box__time">
           <span>投稿日時：<%= post.created_at.strftime('%Y/%m/%d %H:%M')%></span>
-        </div>
-        </div>  
-        <div class="post__middle_box">
+         </div>
+     </div>  
+     <div class="post__middle_box">
           <span><%= post.content %></span>
-        </div>
-        <div class="post__bottom_box">
+    </div>
+     <div class="post__bottom_box">
       <ul class="post__bottom_box__user_actions">
         <li>
           <i class="far fa-comment-alt"></i>
@@ -34,10 +32,10 @@
         </li>
         </ul>
        <ul class="post__bottom_box__admin_actions">
-        <li>編集</li>
-        <li>削除</li>
+           <li>編集</li>
+           <li>削除</li>
         </ul>
-        </div>
+    </div>
         </div>
         </li>
      <% end %>
