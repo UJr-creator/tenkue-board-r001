@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   
 
-  resources :posts,except: [:show]
+  resources :posts
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
