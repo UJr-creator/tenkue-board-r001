@@ -9,7 +9,7 @@
       <li>
         <% @posts.each do |post| %>
           <div class="post">
-            <%= link_to post_url(post.id) do %>
+            <%= link_to post_url(post) do %>
               <div class="post__top_box">
                 <div class="post__top_box__name">
                   <span>投稿者：投稿者名</span>
