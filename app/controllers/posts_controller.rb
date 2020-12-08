@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
-  before_action :set_post, only: %i[edit show update destroy]
+  before_action :set_post, only: %i[edit show update destory]
+  before_action :ensure_correct_user, only: %i[edit update destory]
 
   def index
     @posts = Post.all
@@ -47,8 +48,8 @@ class PostsController < ApplicationController
   end
 
   def ensure_correct_user
-    @post = Post.find_by(id: params[:id])
-    if @post.user_id != @current_user.id
+    @post = current_user.posts.find_by(id: params[:id])
+    unless @post
       redirect_to root_url
     end
   end
