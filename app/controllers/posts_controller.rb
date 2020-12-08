@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
-  before_action :set_post, only: %i[edit show update delete]
+  before_action :set_post, only: %i[edit show update destroy]
 
   def index
     @posts = Post.all
@@ -29,7 +29,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @book.update(post_params)
+    if @post.update(post_params)
       redirect_to post_url
     else
       render :edit
