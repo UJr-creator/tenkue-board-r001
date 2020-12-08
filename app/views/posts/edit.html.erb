@@ -1,17 +1,21 @@
-  <div class="container">
-    <h1 class="form-heading">編集する</h1>
-    <%= form_with(model: @post, local:true) do |f| %>
-      <div class="form">
-        <div class="form-body">
-        <%= render 'templates/error_messages', model: f.object %>
-        <div class="form-error">
-              <%= message %>
-            </div>
-          <% end %>
-          <textarea name="content"><%= @post.content %></textarea>
-          <input type="submit" value="保存">
-        </div>
+<div class="post_wrapper">
+  <div class="post_wrapper__content">
+    <div class="post_wrapper__content__post_form">
+      <h3>
+        <span>投稿編集</span>
+      </h3>
+      <div class="form_area">
+        <%= form_with(model: @post, local:true) do |f| %>
+          <%= render 'templates/error_messages', model: f.object %>
+          <div class="form_area__field">
+            <%= f.text_area :content, rows: 10 %>
+          </div>
+          <div class="form_area__action">
+            <%= f.submit '投稿', class: 'form_area__action__btn' %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>
+
