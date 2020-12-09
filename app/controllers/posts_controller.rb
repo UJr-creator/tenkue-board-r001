@@ -48,8 +48,8 @@ class PostsController < ApplicationController
   end
 
   def ensure_correct_user
-    @post = current_user.posts.find_by(id: params[:id])
-    unless @post
+    @post = Post.find_by(id: params[:id])
+    unless @post.user_id == current_user.id
       redirect_to root_url
     end
   end
