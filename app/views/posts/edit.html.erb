@@ -4,17 +4,7 @@
       <h3>
         <span>投稿編集</span>
       </h3>
-      <div class="form_area">
-        <%= form_with(model: @post, local:true) do |f| %>
-          <%= render 'templates/error_messages', model: f.object %>
-          <div class="form_area__field">
-            <%= f.text_area :content, rows: 10 %>
-          </div>
-          <div class="form_area__action">
-            <%= f.submit '投稿', class: 'form_area__action__btn' %>
-          </div>
-        <% end %>
-      </div>
+      <%= render "templates/form" %>
     </div>
   </div>
 </div>
