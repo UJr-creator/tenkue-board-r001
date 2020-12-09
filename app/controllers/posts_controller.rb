@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
-  before_action :set_post, only: %i[edit show]
+  before_action :authenticate_user!, only: %i[new edit update create destroy]
+  before_action :set_post, only: %i[edit show update destroy]
+  before_action :ensure_correct_user, only: %i[edit update destory]
 
   def index
     @posts = Post.all
@@ -16,23 +17,29 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  def edit
-  end
-
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
       redirect_to root_url
     else
-      render ("posts/new")
+      render :new
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @post.update(post_params)
+      redirect_to post_url
+    else
+      render :edit
+    end
+  end
   
   def destroy
-    @post = Post.find_by(id: params[:id])
     @post.destroy
-    redirect_to("/")
+    redirect_back(fallback_location: root_path)
   end
   
   private
@@ -42,8 +49,8 @@ class PostsController < ApplicationController
 
   def ensure_correct_user
     @post = Post.find_by(id: params[:id])
-    if @post.user_id != @current_user.id
-      redirect_to("/")
+    unless @post.user_id == current_user.id
+      redirect_to root_url
     end
   end
 
