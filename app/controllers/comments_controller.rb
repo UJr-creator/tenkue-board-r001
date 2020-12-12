@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: %i[update edit destoy]
+  before_action :set_comment, only: %i[update edit destroy]
 
   def create
     @comment = current_user.find_or_create(comment_params)
@@ -24,6 +24,11 @@ class CommentsController < ApplicationController
       redirect_back(fallback_location: root_path)
       flash[:notice] = "コメントを(140文字以内で)入力してください"
     end
+  end
+
+  def destroy
+    @comment.destroy
+    redirect_back(fallback_location: root_path)
   end
 
   private
