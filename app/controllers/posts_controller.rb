@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: %i[new edit update create destroy]
+  skip_before_action :authenticate_user!, only: %i[index show]
   before_action :set_post, only: %i[edit show update destroy]
   before_action :ensure_correct_user, only: %i[edit update destory]
 

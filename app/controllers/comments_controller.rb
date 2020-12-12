@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_comment, only: %i[update edit destroy]
+  before_action :set_comment, only: %i[update edit destroy comment_correct_user]
   before_action :comment_correct_user, only: %i[edit update destory]
 
   def create
@@ -14,8 +13,9 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    @post = @comment.post
+    @post = Post.find(params[:post_id])
     @comments = @post.comments.order(id: :desc)
+    render "posts/show"
   end
 
   def update
@@ -43,7 +43,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_correct_user
-    @comment = Comment.find_by(id: params[:id])
     unless @comment.user_id == current_user.id
       redirect_to root_url
     end
