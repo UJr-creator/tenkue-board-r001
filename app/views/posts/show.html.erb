@@ -18,7 +18,7 @@
           <div class="post_detail__top_box__name">
             <span>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d %H:%M')%></span>
           </div>
-        </div>  
+        </div>
         <div class="post_detail__middle_box">
           <span><%= @post.content%></span>
         </div>
@@ -28,17 +28,14 @@
               <i class="far fa-comment-alt"></i>
               <span>コメント数</span>
             </li>
-            <li>
-              <i class="far fa-heart"></i>
-              <span>いいね数</span>
-            </li>
+            <%= render  partial: "likes/like", locals: { post: @post } %>
           </ul>
           <div class="post_detail__bottom_box__admin_actions">
           <% if @post.user == current_user %>
             <%= link_to("編集", edit_post_path) %>
-            <%= link_to("削除",@post, method: :delete, data: { confirm: "本当に削除して良いですか？", cancel: "やめる", commit: "削除する"}, title: "削除確認" ) %> 
+            <%= link_to("削除",@post, method: :delete, data: { confirm: "本当に削除して良いですか？", cancel: "やめる", commit: "削除する"}, title: "削除確認" ) %>
           <% end %>
-            
+
           </div>
         </div>
       </div>
