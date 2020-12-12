@@ -3,6 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts
+  has_many :comments
 
   def self.guest
     find_or_create_by!(email: 'guest@example.com', name: 'ゲストユーザ') do |user|

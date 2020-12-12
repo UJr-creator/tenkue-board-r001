@@ -10,6 +10,8 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comments = @post.comments.order(id: :desc)
+    @comment = current_user.comments.new
   end
 
   def new
