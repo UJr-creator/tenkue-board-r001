@@ -1,8 +1,9 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[update edit destroy]
+  before_action :comment_correct_user, only: %i[edit update destory]
 
   def create
-    @comment = current_user.find_or_create(comment_params)
+    @comment = current_user.comments.build(comment_params)
     if @comment.save
       redirect_back(fallback_location: root_path)
     else
@@ -38,5 +39,12 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:comment).merge(post_id: params[:post_id])
+  end
+
+  def comment_correct_user
+    @comment = Comment.find_by(id: params[:id])
+    unless @comment.user_id == current_user.id
+      redirect_to root_url
+    end
   end
 end
