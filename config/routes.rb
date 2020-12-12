@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: "posts#index"
   resources :posts do
-    post "comments", to: "comments#create"
+    resources :comments, only: %i[create update edit destroy]
   end
 
   devise_for :users, controllers: {

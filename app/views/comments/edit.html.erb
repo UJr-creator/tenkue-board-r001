@@ -13,20 +13,20 @@
       <div class="post_detail">
         <div class="post_detail__top_box">
           <div class="post_detail__top_box__name">
-            <span>投稿者：<%= @post.user.name %></span>
+            <span>投稿者：<%= @comment.post.user.name %></span>
           </div>
           <div class="post_detail__top_box__name">
-            <span>投稿日時：<%= @post.created_at.strftime('%Y/%m/%d %H:%M')%></span>
+            <span>投稿日時：<%= @comment.post.created_at.strftime('%Y/%m/%d %H:%M')%></span>
           </div>
         </div>  
         <div class="post_detail__middle_box">
-          <span><%= @post.content %></span>
+          <span><%= @comment.post.content %></span>
         </div>
         <div class="post_detail__bottom_box">
           <ul class="post_detail__bottom_box__user_actions">
             <li>
               <i class="far fa-comment-alt"></i>
-              <span><%= @post.comments.count %></span>
+              <span><%= @comment.post.comments.count %></span>
             </li>
             <li>
               <i class="far fa-heart"></i>
@@ -34,10 +34,11 @@
             </li>
           </ul>
           <div class="post_detail__bottom_box__admin_actions">
-          <% if @post.user == current_user %>
+          <% if @comment.post.user == current_user %>
             <%= link_to("編集", edit_post_path) %>
-            <%= link_to("削除",@post, method: :delete, data: { confirm: "本当に削除して良いですか？", cancel: "やめる", commit: "削除する"}, title: "削除確認" ) %> 
+            <%= link_to("削除", @comment.post, method: :delete, data: { confirm: "本当に削除して良いですか？", cancel: "やめる", commit: "削除する"}, title: "削除確認" ) %> 
           <% end %>
+            
           </div>
         </div>
       </div>
