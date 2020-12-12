@@ -7,5 +7,5 @@ class Post < ApplicationRecord
     return User.find_by(id: self.user_id)
   end
   
-  has_many :comments
+  has_many :comments, dependent: :destroy
 end
