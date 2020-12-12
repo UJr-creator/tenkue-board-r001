@@ -10,7 +10,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    @user = @post.user
   end
 
   def new
@@ -39,7 +38,7 @@ class PostsController < ApplicationController
   
   def destroy
     @post.destroy
-    redirect_back(fallback_location: root_path)
+    redirect_to root_url
   end
   
   private

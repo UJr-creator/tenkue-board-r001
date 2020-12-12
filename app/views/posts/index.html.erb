@@ -12,7 +12,7 @@
             <%= link_to post_url(post) do %>
               <div class="post__top_box">
                 <div class="post__top_box__name">
-                  <span>投稿者：投稿者名</span>
+                  <span>投稿者：<%= post.user.name %></span>
                 </div>
                 <div class="post__top_box__time">
                   <span>投稿日時：<%= post.created_at.strftime('%Y/%m/%d %H:%M')%></span>
