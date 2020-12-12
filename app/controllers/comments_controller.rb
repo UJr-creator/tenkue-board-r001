@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_comment, only: %i[update edit destroy]
   before_action :comment_correct_user, only: %i[edit update destory]
 
@@ -8,7 +9,7 @@ class CommentsController < ApplicationController
       redirect_back(fallback_location: root_path)
     else
       redirect_back(fallback_location: root_path)
-      flash[:notice] = "コメントを(140文字以内で)入力してください"
+      flash[:alert] = "コメントを(140文字以内で)入力してください"
     end
   end
 
@@ -23,7 +24,7 @@ class CommentsController < ApplicationController
       redirect_to post_url(@post)
     else
       redirect_back(fallback_location: root_path)
-      flash[:notice] = "コメントを(140文字以内で)入力してください"
+      flash[:alert] = "コメントを(140文字以内で)入力してください"
     end
   end
 
@@ -38,7 +39,7 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:comment).merge(post_id: params[:post_id])
+    params.require(:comment).permit(:comment, :post_id, :user_id)
   end
 
   def comment_correct_user
