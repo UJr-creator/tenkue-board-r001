@@ -11,7 +11,7 @@ class PostsController < ApplicationController
 
   def show
     @comments = @post.comments.order(id: :desc)
-    @comment = current_user.comments.new
+    @comment = Comment.new
   end
 
   def new
