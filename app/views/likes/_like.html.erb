@@ -1,0 +1,15 @@
+<% if user_signed_in? %>
+  <% if post.already_liked?(current_user) %>
+    <li>
+      <%= link_to  post_like_path(post), method: :delete do %>
+        <i class="far fa-heart"></i>
+      <% end %>
+    </li>
+  <% else %>
+    <li>
+      <%= link_to  post_likes_path(post), method: :post do %>
+        <i class="far fa-heart"></i>
+      <% end %>
+    </li>
+  <% end %>
+<% end %>
