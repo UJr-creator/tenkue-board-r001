@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  it "is not null" do
+  it "Postはnot null" do
     post = Post.new(content: nil)
     post.valid?
     expect(post.errors[:content]).to include("は不正な値です")
