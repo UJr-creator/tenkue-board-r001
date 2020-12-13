@@ -5,8 +5,8 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
 
-  validates :email, format: { with: /[ -~｡-ﾟ]/ }
-  validates :password, format: { with: /[0-9a-zA-Z]{8,32}$+/ }
+  validates :email, format: { with: /[-~｡-ﾟ]/ }
+  validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,32}$+\z/i }
 
   def self.guest
     find_or_create_by!(email: 'guest@example.com', name: 'ゲストユーザ') do |user|
