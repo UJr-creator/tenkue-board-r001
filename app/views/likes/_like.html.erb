@@ -14,4 +14,11 @@
       <% end %>
     </li>
   <% end %>
+<% else %>
+  <li>
+    <%= link_to  post_likes_path(post), method: :post do %>
+      <i class="far fa-heart"></i>
+      <span><%= post.likes.count %></span>
+    <% end %>
+  </li>
 <% end %>
