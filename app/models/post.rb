@@ -1,11 +1,16 @@
 class Post < ApplicationRecord
   belongs_to :user
-  validates :content, format: { with: /\A[[:^cntrl:]]{1,10}$+/ }
+
+  has_many :likes, dependent: :destroy
   validates :user_id,presence:true
+
+  def already_liked?(user)
+    self.likes.exists?(user_id: user.id)
+  end
 
   def user
     return User.find_by(id: self.user_id)
   end
-  
+
   has_many :comments, dependent: :destroy
 end
