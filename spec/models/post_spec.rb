@@ -14,8 +14,8 @@ RSpec.describe Post, type: :model do
   end
 
   it "投稿内容は140文字以内で、投稿可能" do 
-    @post = FactoryBot.build(:post)
-    expect(@post).to be_valid
+    post = FactoryBot.build(:post)
+    expect(post).to be_valid
   end
 
 end

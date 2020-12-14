@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :post do
-    content {"aiueo"}
+    content { "aiueo" }
     association :user
   end
 end

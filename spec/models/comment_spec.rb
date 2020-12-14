@@ -14,7 +14,7 @@ RSpec.describe Comment, type: :model do
   end
 
   it "コメントは140文字以内で、投稿可能" do
-    @comment = FactoryBot.build(:comment)
-    expect(@comment).to be_valid
+    comment = FactoryBot.build(:comment)
+    expect(comment).to be_valid
   end
 end
