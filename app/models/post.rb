@@ -1,8 +1,8 @@
 class Post < ApplicationRecord
   belongs_to :user
+
   has_many :likes, dependent: :destroy
-  validates :content, presence: true, length: {maximum:140}
-  validates :user_id,presence:true
+  validates :content, format: { with: /\A[[:^cntrl:]]{1,10}$+/ }
 
   def already_liked?(user)
     self.likes.exists?(user_id: user.id)
